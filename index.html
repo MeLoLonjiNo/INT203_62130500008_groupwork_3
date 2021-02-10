@@ -21,47 +21,39 @@
 </head>
 
 <body>
-  <!-- <div id="app" class="bg-gray-300 mx-24 h-screen">
-    <h1 class="text-3xl font-bold pt-12 pl-12 pb-20">My Games Gallery()</h1>
-    <div class="flex-col space-y-8">
-      <div class="flex space-x-8">
-        <img class="w-96" src="/images/cookiekingdom.png">
-        <p class="text-2xl font-semibold my-auto">{{game1}}</p>
-      </div>
-      <div class="flex space-x-8">
-        <img class="w-96" src="/images/Genshin_Impact.png">
-        <p class="text-2xl font-semibold my-auto">{{game2}}</p>
-      </div>
-      <div class="flex space-x-8">
-        <img class="w-96" src="/images/DOTA2.jpg">
-        <p class="text-2xl font-semibold my-auto">{{game3}}</p>
-      </div>
-    </div>
-  </div> -->
 
 <div id="app">
   <h1 class="mt-8 mb-10 text-4xl font-bold tracking-tighter text-center text-blue-800 lg:text-center lg:text-5xl title-font">
-    My Games Gallery ( {{ tasks.filter( t => !t.done ).length }} )
+    My Games Gallery ({{countItem}})
   </h1>
-  <ul>
+  <h2 class="mt-8 mb-10 text-2xl font-bold tracking-tighter text-center text-blue-800 lg:text-center lg:text-3xl title-font">
+    Like ({{countDone}})
+  </h2>
+  <ul >
     <li v-for="(task,index) in tasks" :class="{done: task.done}">
   <section class="text-gray-700 body-font ">
-    <div class="container flex flex-col items-center px-5 py-4 mx-auto lg:px-20 lg:py-24 md:flex-row">
-      <div class="bg-green-300 px-3 py-20 mr-5">
+    <div class="container flex flex-col w-3/4 items-center mx-auto lg:px-20 lg:py-8 md:flex-row">
+      <!-- <div class="bg-green-300 px-3 py-20 mr-5">
         Click
-      </div>
-      <div class="w-5/6 mb-10 lg:max-w-lg lg:w-full md:w-1/2 md:mb-0">
-          <img class="object-cover object-center rounded" alt="hero" v-bind:src="task.img">
-      </div>
-      <div class="flex flex-col items-center text-center lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 md:items-start md:text-left">
-        <h1 class="mb-8 text-2xl font-bold tracking-tighter text-center text-blue-800 lg:text-left lg:text-2xl title-font">
+      </div> -->
+
+      <img v-on:click="toggleDone(index)" class="box-content w-5/12 object-cover object-center  rounded" v-bind:src="task.img">
+      
+      <div class="flex flex-col items-center text-center lg:pl-24 md:pl-16 md:items-start md:text-left">
+        <div class="flex space-x-2">
+        <h1 class="mb-4 text-2xl font-bold tracking-tighter text-center text-blue-800 lg:text-left lg:text-2xl title-font">
           {{task.title}}
         </h1>
-        <button v-on:click="toggleDone(index)" class="bg-green-500 mb-8 text-white  py-1 px-2 rounded">
+        <span v-show="task.done">
+          <img class="w-5 h-5 mt-2 " v-bind:src="heart">
+        </span>
+      </div>
+      <p>{{task.description}}</p>
+        <!-- <button v-on:click="toggleDone(index)" class="bg-green-500 mb-8 text-white  py-1 px-2 rounded">
           Done
-        </button>
-        <div class="flex justify-center">
-          <a href="https://www.cookierun-kingdom.com/th/" class="inline-flex items-center font-semibold text-blue-700 md:mb-2 lg:mb-0 hover:text-blue-400 ">
+        </button> -->
+        <div class="flex justify-center mt-4">
+          <a v-bind:href="task.url" class="inline-flex items-center font-semibold text-blue-700 md:mb-2 lg:mb-0 hover:text-blue-400 ">
             Website
           <svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"
             fill="currentColor">
@@ -71,24 +63,13 @@
           </a>
           </div>
         </div>
+        
          </div>
         </section>
       </li>
       </ul>
   </div>                  
-  
-  <!-- <div id="app">
-    <h1 class="text-xl">My Games Gallery ( {{ tasks.filter( t => !t.done ).length }} )</h1>
-    <ul>
-      <li v-for="(task,index) in tasks" :class="{done: task.done}">
 
-        {{task.title}} 
-        <button v-on:click="toggleDone(index)" class="bg-green-500 text-white  py-1 px-2 rounded">
-          Done
-        </button>
-      </li>
-    </ul>
-  </div> -->
 
   <!-- my main.js -->
   <script src="./main.js"></script>
